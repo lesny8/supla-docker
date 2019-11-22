@@ -1,4 +1,4 @@
-FROM debian:jessie
+FROM debian:stretch
 
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
@@ -6,7 +6,7 @@ RUN apt-get update \
         make \
         gcc \
         g++ \
-        libmysqlclient-dev \
+        default-libmysqlclient-dev \
         libssl-dev \
         wget \
         supervisor \
@@ -16,8 +16,8 @@ RUN apt-get update \
     && rm -r /var/lib/apt/lists/* \
     && mkdir -p /var/log/supervisor
 
-ENV SERVER_VERSION=v2.3.1
-#ENV SERVER_VERSION=master
+ENV SERVER_VERSION=v2.3.15
+#ENV SERVER_VERSION_MASTER=XXX
 RUN git clone https://github.com/SUPLA/supla-core.git --branch ${SERVER_VERSION} /src \
     && cd /src/supla-scheduler/Release && make all \
     && cd /src/supla-server/Release && make all \

@@ -1,16 +1,19 @@
-version: '3'
+version: '3.4'
 
 services:
   supla-cloud:
     container_name: ${COMPOSE_PROJECT_NAME}-cloud
     restart: unless-stopped
-    build: ./cloud
+    build:
+      context: ./cloud
+      target: supla_cloud_prod
     env_file:
       - .env.default
       - .env
     volumes:
       - ./ssl/cloud:/etc/apache2/ssl:z
       - ${VOLUME_DATA}/cloud-local:/var/www/cloud/var/local
+      - ${VOLUME_DATA}/cloud-logs:/var/www/cloud/var/logs
       - supla-server-socket:/supla-server:z
     logging:
       options:
