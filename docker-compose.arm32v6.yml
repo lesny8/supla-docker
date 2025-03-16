@@ -1,5 +1,3 @@
-version: '3.4'
-
 services:
   supla-cloud:
     image: supla/supla-cloud:arm32v6

@@ -1,5 +1,3 @@
-version: '3.4'
-
 services:
   supla-cloud:
     networks: [default, proxy]
@@ -12,5 +10,5 @@ services:
 
 networks:
   proxy:
-    external:
-      name: webproxy
+    external: true
+    name: webproxy
